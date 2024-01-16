@@ -54,16 +54,16 @@ async def save_group(bot, message):
         chatTitle = message.chat.title
         lz_buttons = [
             [
-                 lnlinekeybordButton('mark Verified ', callback_data=f"verify_lazy_group:{chatTitle}:{chatID}")
+                 InlineKeyboardButton('mark Verified ', callback_data=f"verify_lazy_group:{chatTitle}:{chatID}")
             ],[
-                 lnlinekeybordButton('Ban Chat Verified ', callback_data=f"bangrpchat:{chatTitle}:{chatID}")
+                 InlineKeyboardButton('Ban Chat Verified ', callback_data=f"bangrpchat:{chatTitle}:{chatID}")
             ],[
-                 lnlinekeybordButton('Close ', callback_data="close_data")
+                 InlineKeyboardButton('Close ', callback_data="close_data")
             ]]
         lazy_markup=lnlinekeybordButton(lz_buttons)
         await bot.sand.message(GROUP_LOGS,
-                              text=f"Hey babe.\n I am added forcefully to This group name"{chatTitle}" please tell me if you like to restrict This group.....",
-                              reply_markup=lazy_markup)
+                            text=f"Hey babe.\n I am added forcefully to This group name"{chatTitle}" please tell me if you like to restrict This group.....",
+                            reply_markup=lazy_markup)
     else:
         settings = await get_settings(message.chat.id)
         if settings["welcome"]:
