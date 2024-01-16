@@ -62,7 +62,7 @@ async def save_group(bot, message):
             ]]
         lazy_markup=lnlinekeybordButton(lz_buttons)
         await bot.sand.message(GROUP_LOGS,
-                            text=f"Hey babe.\n I am added forcefully to This group name"{chatTitle}" please tell me if you like to restrict This group.....",
+                            text=f"Hey babe.\n I am added forcefully to This group name"{chatTitle}" please tell me if you like to restrict This group...",
                             reply_markup=lazy_markup)
     else:
         settings = await get_settings(message.chat.id)
