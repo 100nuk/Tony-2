@@ -1013,8 +1013,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
     #Adding This Feature to the bot to get the control over the group
     #Request verified
     elif query.data.startswith("verify_lazy_group"):
-           chatTitle, chatID = query.data.split(":")
-       print(f"Debug:query.data=(query.data), chatID={chatID}, chatTitle={chatTitle}")
+        _,  chatTitle, chatID = query.data.split(":")
+        print(f"Debug:query.data=(query.data), chatID={chatID}, chatTitle={chatTitle}")
        try:
            await client.send_message(chatID, text=f"Hello user !\n From now i will provide you content 24/7")
            await db.verify_lazy_chat(int(chatID))
