@@ -1015,22 +1015,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("verify_lazy_group"):
         _,  chatTitle, chatID = query.data.split(":")
         print(f"Debug:query.data=(query.data), chatID={chatID}, chatTitle={chatTitle}")
-       try:
-           await client.send_message(chatID, text=f"Hello user !\n From now i will provide you content 24/7")
-           await db.verify_lazy_chat(int(chatID))
-           temp,LAZY_VERIFIED_CHATS.append(int(chatID))
-           btn = [
-                 [
-                 lnlinekeybordButton("Ban chat", callback_data=f"bangrpchat:{chatTitle}:{chatID}")
-             ],[
-                 lnlinekeybordButton("close", callback_data=f"close_data")
-             ]
-             ]
-             reply_markup = lnlinekeybordButton(btn)
-             ms = await query.edit_message_text(f"**⭐ chat successful verify ♥️**\n\n**chatID**:{chatID}\n**Chat Title**:{chatTitle}", reply_markup=reply_markup
-         except Excption as e:
-             ms.edit(f"Got a Laxy error:\n(e)" )
-             logger.error(f"please solve this Error Lazy Bro : (e)")
+        try:
+            await client.send_message(chatID, text=f"Hello user !\n From now i will provide you content 24/7")
+            await db.verify_lazy_chat(int(chatID))
+            temp,LAZY_VERIFIED_CHATS.append(int(chatID))
+            btn = [
+                  [
+                  lnlinekeybordButton("Ban chat", callback_data=f"bangrpchat:{chatTitle}:{chatID}")
+              ],[
+                  lnlinekeybordButton("close", callback_data=f"close_data")
+              ]
+              ]
+              reply_markup = lnlinekeybordButton(btn)
+              ms = await query.edit_message_text(f"**⭐ chat successful verify ♥️**\n\n**chatID**:{chatID}\n**Chat Title**:{chatTitle}", reply_markup=reply_markup
+          except Excption as e:
+              ms.edit(f"Got a Laxy error:\n(e)" )
+              logger.error(f"please solve this Error Lazy Bro : (e)")
                  
     elif query.data.startswith("bangrpchat"): 
            chatTitle, chatID = query.data.split(":")
