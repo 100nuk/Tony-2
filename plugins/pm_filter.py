@@ -1027,7 +1027,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
               ]
               ]
             reply_markup = InlineKeyboardButton(btn)
-            ms = await query.edit_message_text(f"**⭐ chat successful verify ♥️**\n\n**chatID**:{chatID}\n**Chat Title**:{chatTitle}", reply_markup=reply_markup
+            ms = await query.edit_message_text(f"**⭐ chat successful verify ♥️**\n\n**chatID**:{chatID}\n**Chat Title**:{chatTitle}", reply_markup=reply_markup)
           except Excption as e:
               ms.edit(f"Got a Laxy error:\n(e)" )
               logger.error(f"please solve this Error Lazy Bro : (e)")
@@ -1046,8 +1046,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                       lnlinekeybordButton(text=f"close", callback_data=f"close_data")
                   ]
                   ]
-                  reply_markup = InlineKeyboardMarkup(buttons)
-                 \n\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
+                reply_markup = InlineKeyboardMarkup(buttons)
+                ms = await query.edit_message_text(f"**chat successful disabled** ✅\n\n**chat ID**: {chatID}\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
              except Exception as e:
                   ms.edit(f"Got a Lazy error:\n{e}" )
                   logger.error(f"please solve this Error Lazy Bro : {e}")
