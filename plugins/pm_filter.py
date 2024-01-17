@@ -1033,34 +1033,34 @@ async def cb_handler(client: Client, query: CallbackQuery):
             logger.error(f"please solve this Error Lazy Bro : (e)")
                  
     elif query.data.startswith("bangrpchat"): 
-           chatTitle, chatID = query.data.split(":")
+        _,  chatTitle, chatID = query.data.split(":")
         print(f"Debug:query.data=(query.data), chatID={chatID}, chatTitle={chatTitle}")
-              try:
-                 await client.send_message(chatID, text=f"oops sorry,let,s Take a break\n This is my last and Good Bye message To you all. \n\n Contact My Admin for more info")
-                 await db.disable_chat(int(chatID))
-                 temp,BANNED_CHATS.append(int(chatID))
-                 btn = [
-                      [
-                      lnlinekeybordButton(text=f"Enable Chat", callback_data=f"enablelazychat:{chatTitle}:{chatID}")
-                  ],[
-                      lnlinekeybordButton(text=f"close", callback_data=f"close_data")
-                  ]
-                  ]
-                reply_markup = InlineKeyboardMarkup(buttons)
-                ms = await query.edit_message_text(f"**chat successful disabled** ✅\n\n**chat ID**: {chatID}\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
-             except Exception as e:
-                  ms.edit(f"Got a Lazy error:\n{e}" )
-                  logger.error(f"please solve this Error Lazy Bro : {e}")
+        try:
+            await client.send_message(chatID, text=f"oops sorry,let,s Take a break\n This is my last and Good Bye message To you all. \n\n Contact My Admin for more info")
+            await db.disable_chat(int(chatID))
+            temp,BANNED_CHATS.append(int(chatID))
+            btn = [
+                  [
+                  lnlinekeybordButton(text=f"Enable Chat", callback_data=f"enablelazychat:{chatTitle}:{chatID}")
+              ],[
+                  lnlinekeybordButton(text=f"close", callback_data=f"close_data")
+              ]
+              ]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            ms = await query.edit_message_text(f"**chat successful disabled** ✅\n\n**chat ID**: {chatID}\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
+        except Exception as e:
+            ms.edit(f"Got a Lazy error:\n{e}" )
+            logger.error(f"please solve this Error Lazy Bro : {e}")
                   
     elif query.data.startswith("enablelazychat"): 
-           chatTitle, chatID = query.data.split(":")
+        _,  chatTitle, chatID = query.data.split(":")
         print(f"Debug:query.data=(query.data), chatID={chatID}, chatTitle={chatTitle}")
-              try:
-                 sts = await db.get_chat(int(chatID))
-                 if not sts:
-                    return await query.answer("chat not found in DB !", show_alert=True)
-                 if not sts.get('disabled'):
-                    return await query.answer('this chat is not yet disabled.', show_alert=True)
+        try:
+            sts = await db.get_chat(int(chatID))
+            if not sts:
+               return await query.answer("chat not found in DB !", show_alert=True)
+               if not sts.get('disabled'):
+               return await query.answer('this chat is not yet disabled.', show_alert=True)
                  await db.re_enable_chat(int(chatID))
                  temp.BANNED_CHAT.remove(int(chatID))
                  btn = [
