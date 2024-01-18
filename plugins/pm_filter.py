@@ -1058,23 +1058,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
         try:
             sts = await db.get_chat(int(chatID))
             if not sts:
-               return await query.answer("chat not found in DB !", show_alert=True)
-               if not sts.get('disabled'):
-               return await query.answer('this chat is not yet disabled.', show_alert=True)
-                 await db.re_enable_chat(int(chatID))
-                 temp.BANNED_CHAT.remove(int(chatID))
-                 btn = [
-                      [
-                      lnlinekeybordButton(text=f"BAN Again", callback_data=f"bangrpchat:{chatTitle}:{chatID}")
-                 ],[
-                      lnlinekeybordButton(text=f"close", callback_data=f"close_data")
-                 ]
-                 ]
-               reply_markup = InlineKeyboardMarkup(buttons)
-               ms = await query.edit_message_text(f"**chat successful Enable** ✅\n\n**chat ID**:{chatID}\n\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
-           except Exception as e:
-               ms.edit(f"Got a Lazy error:\n{e}" )
-               logger.error(f"please solve this Error Lazy Bro : {e}")
+                return await query.answer("chat not found in DB !", show_alert=True)
+            if not sts.get('disabled'):
+                return await query.answer('this chat is not yet disabled.', show_alert=True)
+            await db.re_enable_chat(int(chatID))
+            temp.BANNED_CHAT.remove(int(chatID))
+            btn = [
+                  [
+                  lnlinekeybordButton(text=f"BAN Again", callback_data=f"bangrpchat:{chatTitle}:{chatID}")
+             ],[
+                  lnlinekeybordButton(text=f"close", callback_data=f"close_data")
+             ]
+             ]
+           reply_markup = InlineKeyboardMarkup(buttons)
+           ms = await query.edit_message_text(f"**chat successful Enable** ✅\n\n**chat ID**:{chatID}\n\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
+       except Exception as e:
+           ms.edit(f"Got a Lazy error:\n{e}" )
+           logger.error(f"please solve this Error Lazy Bro : {e}")
                           
     elif query.data.startswith("sendfiles"):
         clicked = query.from_user.id
