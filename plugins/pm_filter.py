@@ -1066,15 +1066,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [
                   [
                   lnlinekeybordButton(text=f"BAN Again", callback_data=f"bangrpchat:{chatTitle}:{chatID}")
-             ],[
+              ],[
                   lnlinekeybordButton(text=f"close", callback_data=f"close_data")
-             ]
-             ]
-           reply_markup = InlineKeyboardMarkup(buttons)
-           ms = await query.edit_message_text(f"**chat successful Enable** ✅\n\n**chat ID**:{chatID}\n\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
-       except Exception as e:
-           ms.edit(f"Got a Lazy error:\n{e}" )
-           logger.error(f"please solve this Error Lazy Bro : {e}")
+              ]
+              ]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            ms = await query.edit_message_text(f"**chat successful Enable** ✅\n\n**chat ID**:{chatID}\n\n**chat Title**:{chatTitle}", reply_markup=reply_markup)
+        except Exception as e:
+            ms.edit(f"Got a Lazy error:\n{e}" )
+            logger.error(f"please solve this Error Lazy Bro : {e}")
                           
     elif query.data.startswith("sendfiles"):
         clicked = query.from_user.id
